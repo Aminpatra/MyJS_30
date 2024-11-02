@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Variables</title>
+  <meta name="description" content="Application on CSS Variables">
+  <style>
+    
+    :root {
+      --spacing: 10px;
+      --blur: 0px;
+      --color: black;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      height: auto;
+      text-align: center;
+      font-family: cursive;
+      background: rgb(238,203,174);
+      background: linear-gradient(90deg, rgba(238,203,174,1) 28%, rgba(233,148,154,1) 100%);
+      min-height: calc(100vh - 1px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    img {
+      display: block;
+      margin: 1em auto;
+      padding: var(--spacing);
+      background-color: var(--color);
+      filter: blur(var(--blur));
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Selecting <span class="hl">CSS</span> Variables Using <span class="hl">JS</span></h1>
+  
+  <div class="controls">
+    <label for="spacing">Spacing:</label>
+    <input type="range" name="spacing" min="0" max="200" value="10" data-sizing="px">
+
+    <label for="blur">Blur:</label>
+    <input type="range" name="blur" min="0" max="20" value="0" data-sizing="px">
+
+    <label for="color">Background Color</label>
+    <input type="color" name="color">
+  </div>
+
+  <img src="https://plus.unsplash.com/premium_photo-1673306778968-5aab577a7365?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFja2dyb3VuZCUyMGltYWdlfGVufDB8fDB8fHww" alt="">
+
+  <script>
+    const inputs = document.querySelectorAll(".controls input");
+
+    function handleUpdate() {
+      // console.log(this.value)
+      const suffix = this.dataset.sizing || '';
+      document.documentElement.style.setProperty(`--${this.name}`, `${this.value}${suffix}`)
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate))
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate))
+  </script>
+</body>
+</html>
