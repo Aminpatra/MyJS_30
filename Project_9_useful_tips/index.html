@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Useful Console tips</title>
+  <style>
+    body {
+      background-color: aliceblue;
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="font-family: cursive; text-align: center;">Some paragraph.</h1>
+  <script>
+    console.log("formatting a %s", 'String');
+
+    // styling
+    console.log("%c Styling a console log msg", 'color: aliceblue; background-color: black; padding: .3em .5em')
+
+    // warning
+    console.warn("OH NOO");
+
+    // Error
+    console.error("SHIT!");
+
+    // info 
+    console.info("Crocodiles eat 3-4 people per year");
+
+    // Testing
+    console.assert(1 === 2, "It is obviously wrong dude...");
+
+    // Clear
+    console.clear();
+
+    // Viewing DOM Elements
+    h1El = document.querySelector("h1");
+    console.dir(h1El); // Very useful!
+
+    console.clear()
+
+    // Grouping Things Together
+    const dogs = [{ name: "Snickers", age: 2 }, { name: "hugo", age: 8 }];
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`); // also very useful.
+      // groupCollapsed => makes it closed by default
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`);
+    })
+    
+    // counting
+    console.count("Amin");
+    console.count("Amin");
+    console.count("Mohamed");
+    console.count("Amin");
+    console.count("Amin");
+    console.count("Amin");
+
+    // timing 
+    console.time("Fetching Data");
+    fetch('https://api.github.com/users/wesbos')
+    .then(data => data.json())
+    .then(data => {
+      console.timeEnd("Fetching Data");
+      console.log(data);
+    })
+
+  </script>
+</body>
+
+</html>
